@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { createContext } from 'react';
 import app from '../../firebase/firebase.config';
 
@@ -20,9 +20,16 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, profile);
     };
 
+    //login with email
+    const loginWithEmail = (email, password) => {
+        // setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    };
+
     const authInfo = {
         createUserWithEmail,
         updateUserProfile,
+        loginWithEmail
     };
 
     return (

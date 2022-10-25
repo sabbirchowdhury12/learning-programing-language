@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
@@ -22,17 +23,27 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                // handleUserProfile(name, photoURL);
+                handleUserUpadateProfile(name, photoURL);
                 // handleEmailVarify();
                 // toast.success('Check your email and varify');
             }).catch(err => console.log(err));
+    };
+
+    const handleUserUpadateProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        };
+        updateUserProfile(profile)
+            .then(() => { })
+            .then(error => console.error(error.msg));
     };
 
     const handleCheck = (event) => {
         setAccepted(event.target.checked);
     };
     return (
-        <div className='container bg-secondary mt-5 rounded p-3 text-light'>
+        <div className='container bg-dark mt-5 rounded p-3 text-light'>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupName">
                     <Form.Label>Name</Form.Label>
@@ -51,11 +62,17 @@ const Register = () => {
                     <Form.Control type="password" name='password' placeholder="Password" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" onClick={handleCheck} label="Check me out" />
+                    <Form.Check type="checkbox" onClick={handleCheck} label="Agree with our Terms and Condition." />
                 </Form.Group>
-                <Button disabled={!accepted} variant="primary" type="submit">
+                <Button className='fw-bold' disabled={!accepted} variant="primary" type="submit">
                     Register
                 </Button>
+                <Form.Group>
+                    <p className='mt-4'>
+                        If You have Already a account. Please <Link to='/login'>Login.</Link>
+                    </p>
+                </Form.Group>
+
             </Form>
 
 

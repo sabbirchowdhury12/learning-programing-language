@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
     const [accepted, setAccepted] = useState(false);
+    const { createUserWithEmail, updateUserProfile } = useContext(AuthContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -12,7 +15,17 @@ const Register = () => {
         const password = form.password.value;
         const name = form.name.value;
         const photoURL = form.photoURL.value;
-        console.log(email, password, name, photoURL);
+        // console.log(email, password, name, photoURL);
+
+        createUserWithEmail(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                // handleUserProfile(name, photoURL);
+                // handleEmailVarify();
+                // toast.success('Check your email and varify');
+            }).catch(err => console.log(err));
     };
 
     const handleCheck = (event) => {

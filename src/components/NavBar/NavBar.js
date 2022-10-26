@@ -12,13 +12,10 @@ import './NavBar.module.css';
 
 const NavBar = () => {
     const [toggle, setToggle] = useState(false);
-    const { user, logOut } = useContext(AuthContext);
+    const { user, } = useContext(AuthContext);
 
     const handleLogOut = () => {
-        logOut()
-            .then(() => {
 
-            }).catch(err => console.error(err));
     };
 
     const handleToggle = () => {

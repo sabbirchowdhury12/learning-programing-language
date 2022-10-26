@@ -6,12 +6,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
 
 
 
 
 const Login = () => {
 
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -28,8 +30,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                setError('');
                 navigate(from, { replace: true });
-            }).catch(err => console.log(err));
+            }).catch(error => {
+                console.error(error);
+                setError(error.message);
+            });
     };
 
     const handleWithGoogle = () => {
@@ -37,7 +44,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-            }).catch(error => console.log(error));
+            }).catch(error => console.error(error));
     };
 
     return (
@@ -51,6 +58,10 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" name='password' placeholder="Password" />
                 </Form.Group>
+                <Form.Group>
+                    <p className='text-danger'>{error}</p>
+                </Form.Group>
+
                 <div className='text-center'>
                     <Button variant="outline-primary" className='w-50 my-2 fw-bold text-light' type="submit">
                         Login
@@ -67,6 +78,7 @@ const Login = () => {
                     </p>
                 </Form.Group>
             </Form>
+
 
         </div>
     );

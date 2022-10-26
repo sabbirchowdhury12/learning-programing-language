@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+    const [error, setError] = useState('');
     const [accepted, setAccepted] = useState(false);
     const { createUserWithEmail, updateUserProfile } = useContext(AuthContext);
 
@@ -22,11 +23,15 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
                 form.reset();
                 handleUserUpadateProfile(name, photoURL);
                 // handleEmailVarify();
                 // toast.success('Check your email and varify');
-            }).catch(err => console.log(err));
+            }).catch(error => {
+                console.error(error);
+                setError(error.message);
+            });
     };
 
     const handleUserUpadateProfile = (name, photoURL) => {
@@ -60,6 +65,9 @@ const Register = () => {
                 <Form.Group className="mb-3" controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" name='password' placeholder="Password" />
+                </Form.Group>
+                <Form.Group>
+                    <p className='text-danger'>{error}</p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" onClick={handleCheck} label="Agree with our Terms and Condition." />

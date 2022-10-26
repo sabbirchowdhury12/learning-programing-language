@@ -5,7 +5,7 @@ const CourseSideBar = ({ course }) => {
     const { title, id } = course;
     return (
         <div className='my-3 '>
-            <Link to={`courses/${id}`}>{title}</Link>
+            <Link to={`/courses/${id}`}>{title}</Link>
         </div>
     );
 };

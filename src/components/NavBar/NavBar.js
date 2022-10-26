@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
+import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { FaUser } from 'react-icons/fa';
 import { FcIdea } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import './NavBar.module.css';
 
 const NavBar = () => {
     const [toggle, setToggle] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            }).catch(err => console.error(err));
+    };
 
     const handleToggle = () => {
         setToggle(!toggle);
@@ -29,11 +40,22 @@ const NavBar = () => {
                         <Link to='/courses' > Courses</Link>
                         <Link to='/' > FAQ</Link>
                         <Link to='/' > Blog</Link>
-                        <Link to='/login' > Login</Link>
-                        <Link to='/register' > Register</Link>
+                        {
+                            user?.uid ? <Button onClick={handleLogOut} variant='light' className='fw-bold ms-2 p-1'>Log Out</Button> :
+                                <>
+                                    <Link to='/login' > Login</Link>
+                                    <Link to='/register' > Register</Link>
+                                </>
+                        }
+
+
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
+                        <Nav.Link href="#deets">
+                            {
+                                user?.photoURL ? <Image title={`${user.displayName}`} style={{ height: '30px' }} roundedCircle src={user.photoURL} /> : <FaUser />
+                            }
+                        </Nav.Link>
 
 
                         <Nav.Link eventKey={2} href="#memes">

@@ -7,11 +7,13 @@ import Courses from "../components/Courses/Courses";
 import CourseDeatails from "../components/CourseDeatails/CourseDeatails";
 import CheackOut from "../components/CheackOut/CheackOut";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../components/ErrorPAge/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

@@ -36,15 +36,18 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
+    //log out
+    const logOut = () => {
+        // setLoading(true);
+        return signOut(auth);
+    };
 
     // set user 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            // if (currentUser === null || currentUser.emailVerified) {
-            //     setuser(currentUser);
-            // }
-            // setLoading(false);
+
+
         });
 
         return () => unsubscribe();
@@ -57,7 +60,7 @@ const AuthProvider = ({ children }) => {
         loginWithEmail,
         signWithGoogle,
         user,
-
+        logOut
     };
 
     return (

@@ -38,7 +38,7 @@ const NavBar = () => {
                     <Nav className="me-auto">
                         <Link to='/' > Home</Link>
                         <Link to='/courses' > Courses</Link>
-                        <Link to='/' > FAQ</Link>
+                        <Link to='/faq' > FAQ</Link>
                         <Link to='/blog' > Blog</Link>
                         {
                             user?.uid ? <Button onClick={handleLogOut} variant='light' className='fw-bold ms-2 p-1'>Log Out</Button> :

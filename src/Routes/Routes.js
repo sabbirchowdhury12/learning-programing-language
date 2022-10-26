@@ -9,6 +9,7 @@ import CheackOut from "../components/CheackOut/CheackOut";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../components/ErrorPAge/ErrorPage";
 import Blog from "../components/Blog/Blog";
+import FAQPage from "../components/FAQPage/FAQPage";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/faq',
+                element: <FAQPage></FAQPage>
             }
 
         ]

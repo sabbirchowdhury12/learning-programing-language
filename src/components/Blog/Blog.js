@@ -18,20 +18,18 @@ const Blog = () => {
                     <Accordion.Body>
                         <p>Firebase helps you develop high-quality apps, grow your user base, and earn more money. Each feature works independently, and they work even better together.
                         </p>
-                        <p>
-                            <h4>Type of Authentication:</h4>
-                            <ul>
-                                <li>Password-based authentication</li>
-                                <li>Google, Github, facebook etc</li>
-                                <li>Two-factor/multifactor authentication</li>
-                                <li>Biometric authentication</li>
-                                <li>Single sign-on</li>
-                                <li>Certificate-based authentication</li>
-                                <li>Token-based authentication</li>
-                            </ul>
 
+                        <h4>Type of Authentication:</h4>
+                        <ul>
+                            <li>Password-based authentication</li>
+                            <li>Google, Github, facebook etc</li>
+                            <li>Two-factor/multifactor authentication</li>
+                            <li>Biometric authentication</li>
+                            <li>Single sign-on</li>
+                            <li>Certificate-based authentication</li>
+                            <li>Token-based authentication</li>
+                        </ul>
 
-                        </p>
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">

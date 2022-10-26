@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
 
 
@@ -14,12 +14,18 @@ import { useState } from 'react';
 const Login = () => {
 
     const [error, setError] = useState('');
+
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    const { loginWithEmail, signWithGoogle } = useContext(AuthContext);
-    const googleProvider = new GoogleAuthProvider();
 
+    const { loginWithEmail, signWithGoogle, signWithGithub } = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
+
+    //handle submit-------
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -39,8 +45,17 @@ const Login = () => {
             });
     };
 
+    //sign in with google
     const handleWithGoogle = () => {
         signWithGoogle(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            }).catch(error => console.error(error));
+    };
+    //sign in with google github
+    const handleWithGithub = () => {
+        signWithGithub(githubProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -69,7 +84,7 @@ const Login = () => {
                     <br />
                     <Button onClick={handleWithGoogle} variant="outline-primary" className='w-50 my-2 fw-bold text-light'><FaGoogle /> Login with Google</Button>
                     <br />
-                    <Button variant="outline-primary" className='w-50 my-2 fw-bold text-light'><FaGithub /> Login with Github</Button>
+                    <Button onClick={handleWithGithub} variant="outline-primary" className='w-50 my-2 fw-bold text-light'><FaGithub /> Login with Github</Button>
                 </div>
 
                 <Form.Group>

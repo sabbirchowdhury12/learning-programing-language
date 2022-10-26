@@ -20,6 +20,12 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider);
     };
 
+    //sign in with Github
+    const signWithGithub = (provider) => {
+        setLoading(true);
+        return signInWithPopup(auth, provider);
+    };
+
     //crate user by email and password
     const createUserWithEmail = (email, password) => {
         setLoading(true);
@@ -63,7 +69,8 @@ const AuthProvider = ({ children }) => {
         signWithGoogle,
         user,
         logOut,
-        loading
+        loading,
+        signWithGithub
     };
 
     return (

@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+
     const [error, setError] = useState('');
     const [accepted, setAccepted] = useState(false);
     const { createUserWithEmail, updateUserProfile } = useContext(AuthContext);
 
+    //handle submit-------
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -34,6 +36,7 @@ const Register = () => {
             });
     };
 
+    // update user profile
     const handleUserUpadateProfile = (name, photoURL) => {
         const profile = {
             displayName: name,
@@ -44,9 +47,12 @@ const Register = () => {
             .then(error => console.error(error.msg));
     };
 
+    //check term and condition
     const handleCheck = (event) => {
         setAccepted(event.target.checked);
     };
+
+
     return (
         <div className='container bg-dark mt-5 rounded p-3 text-light'>
             <Form onSubmit={handleSubmit}>

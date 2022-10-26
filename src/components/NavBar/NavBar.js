@@ -30,9 +30,11 @@ const NavBar = () => {
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">
-                    <FcIdea className='h-8' />
-                    Learn-Programming-Languages</Navbar.Brand>
+                <Link to='/'>
+                    <Navbar.Brand>
+                        <FcIdea className='h-8' />
+                        Learn-Programm</Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

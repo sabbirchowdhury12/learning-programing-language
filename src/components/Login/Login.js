@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -11,8 +11,11 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 
 const Login = () => {
-    const { loginWithEmail, signWithGoogle } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    const { loginWithEmail, signWithGoogle } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
 
     const handleSubmit = (event) => {
@@ -25,6 +28,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
             }).catch(err => console.log(err));
     };
 

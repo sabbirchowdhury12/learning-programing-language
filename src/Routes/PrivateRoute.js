@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
 
 const PrivateRoute = ({ children }) => {
 
+    const location = useLocation();
     const { user, loading } = useContext(AuthContext);
 
     if (loading) {
@@ -14,7 +15,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     if (!user) {
-        return <Navigate to='/login' />;
+        return <Navigate to='/login' state={{ from: location }} replace />;
 
     } else {
         return children;

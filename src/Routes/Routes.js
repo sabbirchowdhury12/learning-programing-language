@@ -8,6 +8,7 @@ import CourseDeatails from "../components/CourseDeatails/CourseDeatails";
 import CheackOut from "../components/CheackOut/CheackOut";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../components/ErrorPAge/ErrorPage";
+import Blog from "../components/Blog/Blog";
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
                 path: '/checkout/:id',
                 element: <PrivateRoute><CheackOut></CheackOut></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
 
         ]

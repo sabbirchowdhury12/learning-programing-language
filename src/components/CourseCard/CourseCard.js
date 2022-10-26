@@ -1,6 +1,8 @@
 import React from 'react';
+import { Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 
 const CourseCard = ({ course }) => {
@@ -8,20 +10,24 @@ const CourseCard = ({ course }) => {
     const { id, title, desc, img, price } = course;
 
     return (
-        <div className='col'>
-            <Card className="  text-center">
+
+        <Col lg={4} md={6}>
+            <Card className="my-3 bg-dark text-light text-center">
                 <Card.Header>Featured</Card.Header>
-                <Card.Img variant="top" src={img} />
+                <Card.Img height={'200px'} variant="top" src={img} />
                 <Card.Body>
-                    <Card.Title>Special title treatment</Card.Title>
+                    <Card.Title>{title}</Card.Title>
                     <Card.Text>
-                        With supporting text below as a natural lead-in to additional content.
+                        {desc.slice(0, 100) + '...'}
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Link to={`/courses/${id}`}><Button variant="primary">
+                        Show Details
+                    </Button></Link>
                 </Card.Body>
-                <Card.Footer className="text-muted">2 days ago</Card.Footer>
+                <Card.Footer >Enroll Fee: ${price}</Card.Footer>
             </Card>
-        </div>
+
+        </Col>
     );
 };
 

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import CourseCard from '../CourseCard/CourseCard';
 import CourseSideBar from '../CourseSideBar/CourseSideBar';
+import './Course.module.css';
 
 const Courses = () => {
 
@@ -15,21 +16,22 @@ const Courses = () => {
             .then(data => setCourses(data));
     }, []);
     return (
-        <Container>
+        <Container className='mt-5'>
             <Row>
-                <Col lg={4}>
+                <Col md={4}>
 
                     {
                         courses.map(course => <CourseSideBar key={course.id} course={course}></CourseSideBar>)
                     }
 
                 </Col>
-                <Col lg={8}>
-                    <div className='card'>
+                <Col md={8}>
+                    <Row>
+
                         {
                             courses.map(course => <CourseCard key={course.id} course={course}></CourseCard>)
                         }
-                    </div>
+                    </Row>
                 </Col>
             </Row>
         </Container>

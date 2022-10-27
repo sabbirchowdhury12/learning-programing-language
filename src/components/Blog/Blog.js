@@ -22,7 +22,6 @@ const Blog = () => {
                         <h4>Type of Authentication:</h4>
                         <ul>
                             <li>Password-based authentication</li>
-                            <li>Google, Github, facebook etc</li>
                             <li>Two-factor/multifactor authentication</li>
                             <li>Biometric authentication</li>
                             <li>Single sign-on</li>

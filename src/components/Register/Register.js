@@ -44,7 +44,7 @@ const Register = () => {
         };
         updateUserProfile(profile)
             .then(() => { })
-            .then(error => console.error(error.msg));
+            .then(error => console.error(error));
     };
 
     //check term and condition

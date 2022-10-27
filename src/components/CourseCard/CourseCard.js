@@ -12,9 +12,8 @@ const CourseCard = ({ course }) => {
     return (
 
         <Col lg={4} md={6}>
-            <Card className="my-3 bg-dark text-light text-center">
-                <Card.Header>Featured</Card.Header>
-                <Card.Img height={'200px'} variant="top" src={img} />
+            <Card className="my-3  bg-dark text-light text-center shadow-lg">
+                <Card.Img className='p-1 rounded' height={'200px'} variant="top" src={img} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>

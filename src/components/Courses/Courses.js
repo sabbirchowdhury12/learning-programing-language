@@ -11,12 +11,12 @@ const Courses = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('https://server-side-assaignment.vercel.app/courses')
             .then(res => res.json())
             .then(data => setCourses(data));
     }, []);
     return (
-        <Container className='mt-5'>
+        <Container className='my-5'>
             <Row>
                 <Col md={4}>
 

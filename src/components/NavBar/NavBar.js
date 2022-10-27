@@ -46,7 +46,9 @@ const NavBar = () => {
                         <Link to='/faq' > FAQ</Link>
                         <Link to='/blog' > Blog</Link>
                         {
-                            user?.uid ? <Button onClick={handleLogOut} variant='dark' className='fw-bold ms-2 p-1'>Log Out</Button> :
+                            user?.uid ? <Link>
+                                <Button onClick={handleLogOut} variant='dark' className=' fw-bold  p-1'>Log Out</Button>
+                            </Link> :
                                 <>
                                     <Link to='/login' > Login</Link>
                                     <Link to='/register' > Register</Link>
@@ -63,7 +65,7 @@ const NavBar = () => {
                         </Nav.Link>
 
 
-                        <Link to='/'>
+                        <Link>
                             <DarkModeToggle
                                 mode={mode}
                                 dark="Dark"

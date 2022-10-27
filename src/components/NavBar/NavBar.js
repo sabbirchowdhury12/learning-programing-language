@@ -13,7 +13,7 @@ import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle';
 
 
 const NavBar = () => {
-    const [toggle, setToggle] = useState(false);
+
     const [mode, setMode] = useState('dark');
     const { user, logOut } = useContext(AuthContext);
 
@@ -23,10 +23,6 @@ const NavBar = () => {
             .then(() => {
 
             }).catch(err => console.error(err));
-    };
-
-    const handleToggle = () => {
-        setToggle(!toggle);
     };
 
 

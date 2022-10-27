@@ -2,13 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './Routes/Routes';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <div>
       <RouterProvider router={router} />
-      <ToastContainer />
+      <Toaster />
     </div>
 
   );

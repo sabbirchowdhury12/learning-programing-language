@@ -58,7 +58,7 @@ const NavBar = () => {
 
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">
+                        <Nav.Link>
                             {
                                 user?.photoURL ? <Image title={`${user.displayName}`} style={{ height: '30px' }} roundedCircle src={user.photoURL} /> : <FaUser />
                             }

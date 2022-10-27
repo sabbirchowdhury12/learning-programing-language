@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
@@ -28,8 +29,8 @@ const Register = () => {
                 setError('');
                 form.reset();
                 handleUserUpadateProfile(name, photoURL);
-                // handleEmailVarify();
-                // toast.success('Check your email and varify');
+                toast.success('Register Success');
+
             }).catch(error => {
                 console.error(error);
                 setError(error.message);
@@ -54,10 +55,10 @@ const Register = () => {
 
 
     return (
-        <div className='container bg-dark mt-5 rounded p-3 text-light'>
+        <div className='container bg-dark my-5 rounded p-3 text-light'>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupName">
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>Full Name</Form.Label>
                     <Form.Control type="text" name='name' placeholder="Name" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupPhotoUrl">

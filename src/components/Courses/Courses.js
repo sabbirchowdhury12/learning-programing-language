@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import CourseCard from '../CourseCard/CourseCard';
 import CourseSideBar from '../CourseSideBar/CourseSideBar';
-import './Course.module.css';
+
 
 const Courses = () => {
 

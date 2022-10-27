@@ -9,10 +9,14 @@ import { FcIdea } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import './NavBar.module.css';
+import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle';
+
 
 const NavBar = () => {
     const [toggle, setToggle] = useState(false);
+    const [mode, setMode] = useState('dark');
     const { user, logOut } = useContext(AuthContext);
+
 
     const handleLogOut = () => {
         logOut()
@@ -28,22 +32,21 @@ const NavBar = () => {
 
     return (
 
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="light" className='shadow-lg' variant="light">
             <Container>
-                <Link to='/'>
+                <Link to='/' >
                     <Navbar.Brand>
-                        <FcIdea className='h-8' />
-                        Learn-Programm</Navbar.Brand>
+                        <FcIdea className='pb-2' style={{ height: '40px' }} /> <span className='fw-bold'> Learn-programming </span>
+                    </Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to='/' > Home</Link>
                         <Link to='/courses' > Courses</Link>
                         <Link to='/faq' > FAQ</Link>
                         <Link to='/blog' > Blog</Link>
                         {
-                            user?.uid ? <Button onClick={handleLogOut} variant='light' className='fw-bold ms-2 p-1'>Log Out</Button> :
+                            user?.uid ? <Button onClick={handleLogOut} variant='dark' className='fw-bold ms-2 p-1'>Log Out</Button> :
                                 <>
                                     <Link to='/login' > Login</Link>
                                     <Link to='/register' > Register</Link>
@@ -60,14 +63,25 @@ const NavBar = () => {
                         </Nav.Link>
 
 
-                        <Nav.Link eventKey={2} href="#memes">
-
-                            <span className="form-check form-switch">
-                                <input onClick={handleToggle} className="form-check-input" type="checkbox" role="switch" />
-                                <label htmlFor="">{toggle ? 'Dark' : 'Light'}</label>
-                            </span>
-
-                        </Nav.Link>
+                        <Link to='/'>
+                            <DarkModeToggle
+                                mode={mode}
+                                dark="Dark"
+                                light="Light"
+                                size="sm"
+                                inactiveTrackColor="#e2e8f0"
+                                inactiveTrackColorOnHover="#f8fafc"
+                                inactiveTrackColorOnActive="#cbd5e1"
+                                activeTrackColor="#334155"
+                                activeTrackColorOnHover="#1e293b"
+                                activeTrackColorOnActive="#0f172a"
+                                inactiveThumbColor="#1e293b"
+                                activeThumbColor="#e2e8f0"
+                                onChange={(mode) => {
+                                    setMode(mode);
+                                }}
+                            />
+                        </Link>
 
 
 

@@ -1,0 +1,29 @@
+nav a {
+    color: #eee;
+    text-decoration: none;
+    margin-left: 30px;
+    padding-top: 5px;
+    color: black;
+    font-weight: 600;
+}
+
+.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.light {
+    background-color: #fff;
+    color: #333;
+}
+
+
+.App {
+    outline: none;
+    background: transparent;
+    border-radius: 20px;
+}
+
+.btn {
+    border: none
+}

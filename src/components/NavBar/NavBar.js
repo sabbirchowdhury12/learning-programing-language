@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -8,7 +8,7 @@ import { FaUser } from 'react-icons/fa';
 import { FcIdea } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
-import './NavBar.module.css';
+import './NavBar.css';
 import DarkModeToggle from "react-dark-mode-toggle";
 
 
@@ -17,6 +17,18 @@ const NavBar = () => {
     const [mode, setMode] = useState('dark');
     const { user, logOut } = useContext(AuthContext);
     const [isDarkMode, setIsDarkMode] = useState(() => false);
+
+    const [theme, setTheme] = useState('light');
+    const toggleTheme = () => {
+        if (theme === 'light') {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    };
+    useEffect(() => {
+        document.body.className = theme;
+    }, [theme]);
 
 
     const handleLogOut = () => {
@@ -62,12 +74,15 @@ const NavBar = () => {
                         </Nav.Link>
 
 
-                        <Link>
-                            <DarkModeToggle
-                                onChange={setIsDarkMode}
-                                checked={isDarkMode}
-                                size={60}
-                            />
+                        <Link onClick={toggleTheme}>
+                            <div className={`App ${theme}`}>
+                                <DarkModeToggle
+                                    onChange={setIsDarkMode}
+                                    checked={isDarkMode}
+                                    size={60}
+                                />
+                            </div>
+
                             {/* <DarkModeToggle
                                 mode={mode}
                                 dark="Dark"

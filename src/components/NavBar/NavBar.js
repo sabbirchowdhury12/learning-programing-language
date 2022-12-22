@@ -9,13 +9,14 @@ import { FcIdea } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import './NavBar.module.css';
-import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle';
+import DarkModeToggle from "react-dark-mode-toggle";
 
 
 const NavBar = () => {
 
     const [mode, setMode] = useState('dark');
     const { user, logOut } = useContext(AuthContext);
+    const [isDarkMode, setIsDarkMode] = useState(() => false);
 
 
     const handleLogOut = () => {
@@ -63,6 +64,11 @@ const NavBar = () => {
 
                         <Link>
                             <DarkModeToggle
+                                onChange={setIsDarkMode}
+                                checked={isDarkMode}
+                                size={60}
+                            />
+                            {/* <DarkModeToggle
                                 mode={mode}
                                 dark="Dark"
                                 light="Light"
@@ -78,7 +84,7 @@ const NavBar = () => {
                                 onChange={(mode) => {
                                     setMode(mode);
                                 }}
-                            />
+                            /> */}
                         </Link>
 
 

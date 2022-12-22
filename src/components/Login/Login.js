@@ -93,8 +93,6 @@ const Login = () => {
                     </p>
                 </Form.Group>
             </Form>
-
-
         </div>
     );
 };

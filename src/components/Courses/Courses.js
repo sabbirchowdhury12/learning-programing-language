@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import CourseCard from '../CourseCard/CourseCard';
 import CourseSideBar from '../CourseSideBar/CourseSideBar';
+import Loading from '../Loading/Loading';
 
 
 const Courses = () => {
@@ -15,6 +16,10 @@ const Courses = () => {
             .then(res => res.json())
             .then(data => setCourses(data));
     }, []);
+
+    if (!courses.length) {
+        return <Loading />;
+    }
     return (
         <Container className='my-5'>
             <Row>
